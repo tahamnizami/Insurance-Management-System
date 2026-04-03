@@ -200,7 +200,7 @@ const createMotorCoverNoteHtml = (data) => {
         </div>
 
         <div style="margin-top: 50px; text-align: right;">
-          <strong>For and On behalf of Shaheen Insurance Company Limited</strong>
+          <strong>For and On behalf of Insurance Management System</strong>
         </div>
 
         <!-- Cover Note No at the very bottom, centered -->
@@ -416,7 +416,7 @@ const createTravelCoverNoteHtml = (data) => {
             Please read your policy document carefully for full details of coverage, exclusions, and conditions.<br/><br/>
 
             <strong>Declaration:</strong><br/>
-            I hereby declare and affirm that the information provided in the application form is true to the best of my knowledge and I am in sound health. I am neither travelling against the advice of my medical practitioner nor am I travelling with the purpose of making a claim under this policy. All terms & conditions as well as the exclusions are available at the Shaheen Insurance LTD website: http://www.shaheeninsuranceltd.com.pk and http://etravel.shaheeninsuranceltd.pk<br/><br/>
+            I hereby declare and affirm that the information provided in the application form is true to the best of my knowledge and I am in sound health. I am neither travelling against the advice of my medical practitioner nor am I travelling with the purpose of making a claim under this policy.<br/><br/>
 
             I hereby read and accepted the policy wording.<br/><br/>
 
@@ -433,7 +433,7 @@ const createTravelCoverNoteHtml = (data) => {
         </div>
         
         <div style="margin-top: 50px; text-align: right;">
-            <strong>For and On behalf of Shaheen Insurance Company Limited</strong>
+            <strong>For and On behalf of Insurance Management System</strong>
         </div>
 
         <div style="margin-top: 40px; text-align: center; font-weight: bold;">

@@ -32,5 +32,5 @@ const { query } = require('../config/db');
 })();
 
 /*
-npm run admin:create "Super Admin" admin@shaheen.com Admin@123 SUPER_ADMIN
+npm run admin:create "Super Admin" super@admin.com Admin@123 SUPER_ADMIN
 */

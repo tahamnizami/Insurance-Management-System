@@ -1,7 +1,7 @@
 {
   "info": {
     "_postman_id": "7b2c2e5f-3b72-4c1e-8a62-2d3af2a9d3f3",
-    "name": "Shaheen Insurance - Admin APIs (Phase 0-3)",
+    "name": "Insurance Management System - Admin APIs (Phase 0-3)",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": "Admin Auth + Session + RBAC + Unified Proposals Inbox (Phase 1) + Proposal Details & Review Actions (Phase 2) + Refunds Workflow (Phase 3)"
   },
@@ -92,7 +92,7 @@
             "url": "{{baseUrl}}/api/admin/auth/login",
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"email\": \"admin@shaheen.com\",\n  \"password\": \"Admin@123\"\n}"
+              "raw": "{\n  \"email\": \"super@admin.com\",\n  \"password\": \"Admin@123\"\n}"
             }
           },
           "event": [
@@ -120,7 +120,7 @@
             "url": "{{baseUrl}}/api/admin/auth/forgot-password/otp",
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"email\": \"admin@shaheen.com\"\n}"
+              "raw": "{\n  \"email\": \"super@admin.com\"\n}"
             }
           }
         },
@@ -137,7 +137,7 @@
             "url": "{{baseUrl}}/api/admin/auth/forgot-password/reset",
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"email\": \"admin@shaheen.com\",\n  \"otp\": \"123456\",\n  \"newPassword\": \"NewAdmin@123\"\n}"
+              "raw": "{\n  \"email\": \"super@admin.com\",\n  \"otp\": \"123456\",\n  \"newPassword\": \"NewAdmin@123\"\n}"
             }
           }
         },

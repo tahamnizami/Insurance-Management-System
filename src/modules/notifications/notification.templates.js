@@ -7,16 +7,16 @@ function wrapHtml(title, bodyHtml) {
       ${bodyHtml}
       <hr style="margin-top:20px; border:none; border-top:1px solid #eee;" />
       <p style="color:#777; font-size:12px;">
-        Shaheen Insurance — This is an automated message.
+        Insurance Management System — This is an automated message.
       </p>
     </div>
   `;
 }
 
 function makeWelcomeEmail({ to, fullName }) {
-  const subject = 'Welcome to Shaheen Insurance';
-  const text = `Hi ${fullName || ''}, welcome to Shaheen Insurance.`;
-  const html = wrapHtml('Welcome 🎉', `<p>Hi ${fullName || ''},</p><p>Welcome to Shaheen Insurance.</p>`);
+  const subject = 'Welcome to Insurance Management System';
+  const text = `Hi ${fullName || ''}, welcome to Insurance Management System.`;
+  const html = wrapHtml('Welcome 🎉', `<p>Hi ${fullName || ''},</p><p>Welcome to Insurance Management System.</p>`);
   return { to, subject, text, html };
 }
 
@@ -504,11 +504,11 @@ function makeAdminCustomMessageEmail({ to, fullName, title, message }) {
 
 function makeBirthdayWishEmail({ to, fullName }) {
   const subject = 'Happy Birthday!';
-  const text = `Hi ${fullName || ''}, Shaheen Insurance wishes you a very happy birthday!`;
+  const text = `Hi ${fullName || ''}, Insurance Management System wishes you a very happy birthday!`;
   const html = wrapHtml(
     'Happy Birthday! 🎂',
     `<p>Hi ${fullName || ''},</p>
-     <p>The team at Shaheen Insurance wishes you a very happy birthday and a wonderful year ahead!</p>`
+     <p>The team at Insurance Management System wishes you a very happy birthday and a wonderful year ahead!</p>`
   );
   return { to, subject, text, html };
 }
@@ -525,7 +525,7 @@ function makeOtpEmail({ to, otp, purpose, expiresMinutes }) {
         ? 'Password Reset'
         : 'OTP';
 
-  const subject = `Shaheen Insurance - ${purposeLabel} OTP`;
+  const subject = `Insurance Management System - ${purposeLabel} OTP`;
 
   const text = `Your OTP is ${otp}. It will expire in ${expiresMinutes} minutes. If you did not request this, ignore this email.`;
 
@@ -547,7 +547,7 @@ function makeOtpEmail({ to, otp, purpose, expiresMinutes }) {
  * Moved from mailer.js
  */
 function makeUserPasswordResetLinkEmail({ to, name, otp, expiresMinutes }) {
-  const subject = 'Action Required: Reset Your Password - Shaheen Insurance';
+  const subject = 'Action Required: Reset Your Password - Insurance Management System';
 
   // Construct the URL (Adjust path '/reset-password' to match your frontend route)
   const baseUrl = process.env.FRONTEND_URL || 'http://localhost:3000';

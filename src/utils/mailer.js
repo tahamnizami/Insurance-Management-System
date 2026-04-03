@@ -9,7 +9,7 @@ let transporter = null;
 
 /**
  * Build "From" header properly:
- * "Shaheen Insurance <no-reply@shaheeninsurance.com>"
+ * "Insurance Management System <no-reply@insurancemanagementsystem.com>"
  */
 function buildFrom() {
   const name = process.env.MAIL_FROM_NAME;

@@ -500,8 +500,8 @@ INSERT INTO tracker_companies (id, name, created_at, updated_at) VALUES
 (2,'Falcon-i',NOW(),NOW()),
 (3,'C-Track',NOW(),NOW()),
 (4,'Tracking World',NOW(),NOW()),
-(5,'Shaheen Tracker Partner A',NOW(),NOW()),
-(6,'Shaheen Tracker Partner B',NOW(),NOW());
+(5,'Tracker Partner A',NOW(),NOW()),
+(6,'Tracker Partner B',NOW(),NOW());
 ALTER TABLE tracker_companies AUTO_INCREMENT = 7;
 
 INSERT INTO travel_destinations (id, name, region, created_at, updated_at, is_system) VALUES

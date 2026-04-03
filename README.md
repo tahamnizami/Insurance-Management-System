@@ -165,7 +165,7 @@ modules/
 Each module follows:
 
 ```
-controller → service → repository → routes
+service → controller → routes
 ```
 
 ✔ Clean separation of concerns

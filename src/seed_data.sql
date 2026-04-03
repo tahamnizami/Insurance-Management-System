@@ -1,9 +1,9 @@
 -- =====================================================
--- seed_data.sql – Shaheen Insurance demo seed data
+-- seed_data.sql – Insurance Management System demo seed data
 -- =====================================================
 
 -- Make sure you're in the right DB
--- USE shaheen_app;
+-- USE InsuranceManagementSystem;
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
@@ -53,7 +53,7 @@ DELETE FROM tracker_companies;
 INSERT INTO tracker_companies (id, name, created_at, updated_at) VALUES
 (1, 'TPL Trakker',        NOW(), NOW()),
 (2, 'Falcon-i',           NOW(), NOW()),
-(3, 'Shaheen Tracker A',  NOW(), NOW());
+(3, 'Tracker Partner A',  NOW(), NOW());
 
 ALTER TABLE tracker_companies AUTO_INCREMENT = 4;
 
@@ -85,7 +85,7 @@ INSERT INTO users
 VALUES
 (1, 'Admin User', 'admin@example.com', '03001234567',
  '$2b$10$adminhashadminhashadminhashadminhashxx', -- dummy bcrypt-like string
- 'Shaheen HQ, Karachi', 1,
+ 'IMS HQ, Karachi', 1,
  '42101-1111111-1', '2030-12-31', '1990-01-01',
  'Pakistani', 'male', 'active', 'admin',
  NOW(), NOW()),
@@ -296,7 +296,7 @@ ALTER TABLE notifications AUTO_INCREMENT = 1;
 INSERT INTO notifications
 (user_id, title, body, type, is_read, sent_at, created_at)
 VALUES
-(2, 'Welcome to Shaheen Insurance',
+(2, 'Welcome to Insurance Management System',
  'Your account has been created successfully.', 'system', 0, NOW(), NOW()),
 (2, 'Motor Proposal Submitted',
  'Your motor proposal ABC-123 has been submitted.', 'motor', 0, NOW(), NOW()),

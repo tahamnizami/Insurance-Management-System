@@ -1,7 +1,7 @@
 // src/integrations/coreMock.js
 
 /**
- * Very dumb mock of Shaheen's legacy core.
+ * Very dumb mock of Insurance Management System's legacy core.
  * In real life this would be HTTP calls with axios/fetch.
  */
 

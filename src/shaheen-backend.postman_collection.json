@@ -1,9 +1,9 @@
 {
   "info": {
     "_postman_id": "b9a64d2c-5d73-4f1d-8a7d-123456789abc",
-    "name": "Shaheen Insurance Backend (Node + MySQL)",
+    "name": "Insurance Management System Backend (Node + MySQL)",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "shaheen-dev"
+    "_exporter_id": "dev"
   },
   "item": [
     {

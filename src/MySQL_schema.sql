@@ -1,9 +1,9 @@
 -- =========================================================
--- SHAHEEN APP - UPDATED SCHEMA (ADMIN + REVIEW/PAYMENT/REFUND)
+-- Insurance Management System - UPDATED SCHEMA (ADMIN + REVIEW/PAYMENT/REFUND)
 -- =========================================================
 
--- CREATE DATABASE shaheen_app CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
--- USE shaheen_app;
+-- CREATE DATABASE InsuranceManagementSystem CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+-- USE InsuranceManagementSystem;
 
 -- 1) Static / Lookup Tables
 CREATE TABLE cities (
