@@ -1,6 +1,7 @@
 # Dependencies
 node_modules/
 uploads/
+ui-dashboard/
 
 #FireBase private key
 service-account.json
