@@ -1,4 +1,4 @@
-# 🚀 Insurance Management System (Shaheen Backend)
+# 🚀 Insurance Management System
 
 Backend system powering a **digital insurance platform** designed to automate and manage the complete lifecycle of:
 
@@ -302,15 +302,15 @@ JWT_SECRET=your_secret_key
 DB_HOST=localhost
 DB_USER=root
 DB_PASSWORD=password
-DB_NAME=shaheen
+DB_NAME=InsuranceManagementSystem
 
 SMTP_HOST=smtp.example.com
 SMTP_PORT=587
 SMTP_USER=mailer@example.com
 SMTP_PASS=password
 
-MAIL_FROM_NAME=Shaheen Insurance
-MAIL_FROM_EMAIL=no-reply@shaheeninsurance.com
+MAIL_FROM_NAME=Insurance Management System
+MAIL_FROM_EMAIL=no-reply@insurancemanagementsystem.com
 ```
 
 ---
@@ -318,8 +318,8 @@ MAIL_FROM_EMAIL=no-reply@shaheeninsurance.com
 # 🚀 Installation
 
 ```bash
-git clone https://github.com/your-org/shaheen-backend.git
-cd shaheen-backend
+git clone https://github.com/tahamahmood004/Insurance-Management-System.git
+cd Insurance-Management-System
 npm install
 cp .env.example .env
 mysql < MySQL_schema.sql
@@ -355,7 +355,7 @@ Completed:
 
 # 📄 License
 
-Internal Project — Shaheen Insurance
+Internal Project — Insurance Management System
 
 ---
 
