@@ -1,7 +1,7 @@
 // src/modules/notifications/notification.service.js
 const repo = require('./notification.repository');
 const templates = require('./notification.templates');
-const { sendEmail } = require('../../utils/mailer'); // ✅ your mailer
+const { sendEmail } = require('../../utils/mailer'); // mailer
 const { sendPushToUser, sendPushToAdmins } = require('./fcm.service');
 
 
