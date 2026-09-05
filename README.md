@@ -294,37 +294,97 @@ POST   /api/admin/notifications
 
 # ⚙️ Environment Variables
 
+The backend reads its environment file from `src/.env`. Create that file before
+starting the API. Do not commit it, because it contains database credentials and
+other private configuration. The repository already ignores `.env` files.
+
+```bash
+cd src
+touch .env
+```
+
+Use the following configuration as a starting point and replace placeholder
+values with your local or deployment-specific values:
+
 ```env
-PORT=5000
+# API
+PORT=4000
+APP_BASE_URL=http://localhost:4000
+NODE_ENV=development
 
-JWT_SECRET=your_secret_key
-
+# MySQL
 DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=password
+DB_PORT=3306
+DB_USER=admin
+DB_PASSWORD=your_mysql_password
 DB_NAME=InsuranceManagementSystem
 
-SMTP_HOST=smtp.example.com
-SMTP_PORT=587
-SMTP_USER=mailer@example.com
-SMTP_PASS=password
+# Authentication
+JWT_SECRET=replace_with_a_long_random_secret
+JWT_EXPIRES_IN=7d
+ADMIN_JWT_SECRET=replace_with_a_separate_admin_secret
 
+# Email / SMTP
+SMTP_HOST=localhost
+SMTP_PORT=25
+SMTP_SECURE=false
+SMTP_USER=your_smtp_username
+SMTP_PASS=your_smtp_password
 MAIL_FROM_NAME=Insurance Management System
-MAIL_FROM_EMAIL=no-reply@insurancemanagementsystem.com
+MAIL_FROM_EMAIL=no-reply@example.com
+
+# Firebase push notifications
+GOOGLE_APPLICATION_CREDENTIALS=service-account.json
+
+# Optional PayFast configuration
+PAYFAST_MERCHANT_ID=your_merchant_id
+PAYFAST_MERCHANT_KEY=your_merchant_key
+PAYFAST_PASSPHRASE=your_optional_passphrase
+PAYFAST_PROCESS_URL=https://sandbox.payfast.co.za/eng/process
+PAYFAST_RETURN_URL=https://example.com/payment/success
+PAYFAST_CANCEL_URL=https://example.com/payment/cancel
 ```
+
+`GOOGLE_APPLICATION_CREDENTIALS` points to the Firebase service-account JSON
+file used for push notifications. Keep that file private as well. Email,
+Firebase, and PayFast variables can be configured when those integrations are
+used; the MySQL and JWT variables are required for normal API operation.
 
 ---
 
 # 🚀 Installation
 
+## 1. Install dependencies
+
 ```bash
 git clone https://github.com/tahamahmood004/Insurance-Management-System.git
-cd Insurance-Management-System
+cd Insurance-Management-System/src
 npm install
-cp .env.example .env
-mysql < MySQL_schema.sql
-npm run dev
 ```
+
+## 2. Create the database
+
+Create the database named in `DB_NAME`, then import the schema. The default
+schema expects `InsuranceManagementSystem`:
+
+```bash
+mysql -u root -p -e "CREATE DATABASE IF NOT EXISTS InsuranceManagementSystem CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+mysql -u root -p InsuranceManagementSystem < MySQL_schema.sql
+```
+
+If the MySQL account in `src/.env` does not exist yet, create it or use an
+existing MySQL account in `DB_USER` and `DB_PASSWORD`.
+
+## 3. Configure and start the backend
+
+Create `src/.env` using the example above, then start the API from `src`:
+
+```bash
+npm start
+```
+
+The API runs at `http://localhost:4000`. Check `http://localhost:4000/health`
+to verify that the server is responding.
 
 ---
 
