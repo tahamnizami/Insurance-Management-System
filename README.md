@@ -294,12 +294,12 @@ POST   /api/admin/notifications
 
 # ⚙️ Environment Variables
 
-The backend reads its environment file from `src/.env`. Create that file before
+The backend reads its environment file from `Insurance-Management-System/.env`. Create that file before
 starting the API. Do not commit it, because it contains database credentials and
 other private configuration. The repository already ignores `.env` files.
 
 ```bash
-cd src
+cd Insurance-Management-System
 touch .env
 ```
 
