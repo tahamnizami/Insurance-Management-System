@@ -323,6 +323,8 @@ DB_NAME=InsuranceManagementSystem
 JWT_SECRET=replace_with_a_long_random_secret
 JWT_EXPIRES_IN=7d
 ADMIN_JWT_SECRET=replace_with_a_separate_admin_secret
+ADMIN_JWT_EXPIRES_IN=60m
+ADMIN_INACTIVITY_MINUTES=30
 
 # Email / SMTP
 SMTP_HOST=localhost
