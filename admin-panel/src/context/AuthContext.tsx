@@ -6,6 +6,7 @@ import {
 } from "react";
 import {
   loginAdmin,
+  logoutAdmin,
   type AdminLoginResponse,
   type AdminUser,
 } from "../api/authApi";
@@ -25,7 +26,7 @@ interface AuthContextValue {
     password: string,
     keepLoggedIn: boolean,
   ) => Promise<void>;
-  logout: () => void;
+  logout: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
@@ -82,9 +83,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setAuth(response);
   };
 
-  const logout = () => {
-    clearStoredAuth();
-    setAuth({ accessToken: null, admin: null });
+  const logout = async () => {
+    try {
+      if (accessToken) {
+        await logoutAdmin(accessToken);
+      }
+    } catch {
+      // Clear local auth even when the API is unavailable or the token expired.
+    } finally {
+      clearStoredAuth();
+      setAuth({ accessToken: null, admin: null });
+    }
   };
 
   return (

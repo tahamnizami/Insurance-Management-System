@@ -55,3 +55,16 @@ export async function loginAdmin(
 
   return data;
 }
+
+export async function logoutAdmin(accessToken: string): Promise<void> {
+  const response = await fetch(`${API_BASE_URL}/api/admin/auth/logout`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error("Unable to sign out from the server.");
+  }
+}
