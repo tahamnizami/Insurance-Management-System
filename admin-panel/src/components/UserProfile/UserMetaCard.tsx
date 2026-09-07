@@ -10,6 +10,7 @@ import Label from "../form/Label";
 export default function UserMetaCard() {
   const { accessToken, admin: storedAdmin } = useAuth();
   const [admin, setAdmin] = useState<AdminUser | null>(storedAdmin);
+  const [error, setError] = useState<string | null>(null);
   const { isOpen, openModal, closeModal } = useModal();
     useEffect(() => {
     if (!accessToken) return;
@@ -48,6 +49,9 @@ export default function UserMetaCard() {
             <div className="w-20 h-20 overflow-hidden border border-gray-200 rounded-full dark:border-gray-800">
               <img src="/images/user/owner.jpg" alt="user" />
             </div>
+            {error && (
+              <p className="col-span-full text-sm text-red-500">{error}</p>
+            )}
             <div className="order-3 xl:order-2">
               <h4 className="mb-2 text-lg font-semibold text-center text-gray-800 dark:text-white/90 xl:text-left">
                 {admin?.name || "-"}
