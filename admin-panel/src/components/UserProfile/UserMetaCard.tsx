@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react";
+import { getAdminProfile, type AdminUser } from "../../api/authApi";
+import { useAuth } from "../../context/AuthContext";
 import { useModal } from "../../hooks/useModal";
 import { Modal } from "../ui/modal";
 import Button from "../ui/button/Button";
@@ -5,7 +8,33 @@ import Input from "../form/input/InputField";
 import Label from "../form/Label";
 
 export default function UserMetaCard() {
+  const { accessToken, admin: storedAdmin } = useAuth();
+  const [admin, setAdmin] = useState<AdminUser | null>(storedAdmin);
   const { isOpen, openModal, closeModal } = useModal();
+    useEffect(() => {
+    if (!accessToken) return;
+
+    let isCurrent = true;
+
+    getAdminProfile(accessToken)
+      .then((profile) => {
+        if (isCurrent) setAdmin(profile);
+      })
+      .catch((requestError: unknown) => {
+        if (isCurrent) {
+          setError(
+            requestError instanceof Error
+              ? requestError.message
+              : "Unable to load the admin profile.",
+          );
+        }
+      });
+
+    return () => {
+      isCurrent = false;
+    };
+  }, [accessToken]);
+
   const handleSave = () => {
     // Handle save logic here
     console.log("Saving changes...");
@@ -21,16 +50,16 @@ export default function UserMetaCard() {
             </div>
             <div className="order-3 xl:order-2">
               <h4 className="mb-2 text-lg font-semibold text-center text-gray-800 dark:text-white/90 xl:text-left">
-                Musharof Chowdhury
+                {admin?.name || "-"}
               </h4>
               <div className="flex flex-col items-center gap-1 text-center xl:flex-row xl:gap-3 xl:text-left">
                 <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Team Manager
+                  {admin?.role || "-"}
                 </p>
-                <div className="hidden h-3.5 w-px bg-gray-300 dark:bg-gray-700 xl:block"></div>
+                {/* <div className="hidden h-3.5 w-px bg-gray-300 dark:bg-gray-700 xl:block"></div>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
                   Arizona, United States
-                </p>
+                </p> */}
               </div>
             </div>
             <div className="flex items-center order-2 gap-2 grow xl:order-3 xl:justify-end">
