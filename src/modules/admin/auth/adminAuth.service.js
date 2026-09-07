@@ -19,7 +19,7 @@ exports.login = async ({ email, password }, req) => {
   if (!email || !password) throw httpError(400, 'Email and password are required');
 
   const rows = await query(
-    `SELECT id, full_name, email, password_hash, role, status
+    `SELECT id, full_name, email, mobile, password_hash, role, status
      FROM admins
      WHERE email = ?
      LIMIT 1`,
@@ -74,6 +74,7 @@ exports.login = async ({ email, password }, req) => {
       id: admin.id,
       name: admin.full_name,
       email: admin.email,
+      mobile: admin.mobile,
       role: admin.role,
     },
   };

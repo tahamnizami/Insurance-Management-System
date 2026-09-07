@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react";
+import { getAdminProfile, type AdminUser } from "../../api/authApi";
+import { useAuth } from "../../context/AuthContext";
 import { useModal } from "../../hooks/useModal";
 import { Modal } from "../ui/modal";
 import Button from "../ui/button/Button";
@@ -5,7 +8,35 @@ import Input from "../form/input/InputField";
 import Label from "../form/Label";
 
 export default function UserInfoCard() {
+  const { accessToken, admin: storedAdmin } = useAuth();
+  const [admin, setAdmin] = useState<AdminUser | null>(storedAdmin);
+  const [error, setError] = useState<string | null>(null);
   const { isOpen, openModal, closeModal } = useModal();
+
+  useEffect(() => {
+    if (!accessToken) return;
+
+    let isCurrent = true;
+
+    getAdminProfile(accessToken)
+      .then((profile) => {
+        if (isCurrent) setAdmin(profile);
+      })
+      .catch((requestError: unknown) => {
+        if (isCurrent) {
+          setError(
+            requestError instanceof Error
+              ? requestError.message
+              : "Unable to load the admin profile.",
+          );
+        }
+      });
+
+    return () => {
+      isCurrent = false;
+    };
+  }, [accessToken]);
+
   const handleSave = () => {
     // Handle save logic here
     console.log("Saving changes...");
@@ -20,21 +51,16 @@ export default function UserInfoCard() {
           </h4>
 
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-7 2xl:gap-x-32">
-            <div>
-              <p className="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">
-                First Name
-              </p>
-              <p className="text-sm font-medium text-gray-800 dark:text-white/90">
-                Musharof
-              </p>
-            </div>
+            {error && (
+              <p className="col-span-full text-sm text-red-500">{error}</p>
+            )}
 
             <div>
               <p className="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">
-                Last Name
+                Name
               </p>
               <p className="text-sm font-medium text-gray-800 dark:text-white/90">
-                Chowdhury
+                {admin?.name || "-"}
               </p>
             </div>
 
@@ -43,7 +69,7 @@ export default function UserInfoCard() {
                 Email address
               </p>
               <p className="text-sm font-medium text-gray-800 dark:text-white/90">
-                randomuser@pimjo.com
+                {admin?.email || "-"}
               </p>
             </div>
 
@@ -52,16 +78,16 @@ export default function UserInfoCard() {
                 Phone
               </p>
               <p className="text-sm font-medium text-gray-800 dark:text-white/90">
-                +09 363 398 46
+                {admin?.mobile || "-"}
               </p>
             </div>
 
             <div>
               <p className="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">
-                Bio
+                Role
               </p>
               <p className="text-sm font-medium text-gray-800 dark:text-white/90">
-                Team Manager
+                {admin?.role || "-"}
               </p>
             </div>
           </div>
@@ -142,28 +168,23 @@ export default function UserInfoCard() {
 
                 <div className="grid grid-cols-1 gap-x-6 gap-y-5 lg:grid-cols-2">
                   <div className="col-span-2 lg:col-span-1">
-                    <Label>First Name</Label>
-                    <Input type="text" value="Musharof" />
-                  </div>
-
-                  <div className="col-span-2 lg:col-span-1">
-                    <Label>Last Name</Label>
-                    <Input type="text" value="Chowdhury" />
+                    <Label>Name</Label>
+                    <Input type="text" value={admin?.name || ""} />
                   </div>
 
                   <div className="col-span-2 lg:col-span-1">
                     <Label>Email Address</Label>
-                    <Input type="text" value="randomuser@pimjo.com" />
+                    <Input type="text" value={admin?.email || ""} />
                   </div>
 
                   <div className="col-span-2 lg:col-span-1">
                     <Label>Phone</Label>
-                    <Input type="text" value="+09 363 398 46" />
+                    <Input type="text" value={admin?.mobile || ""} />
                   </div>
 
-                  <div className="col-span-2">
-                    <Label>Bio</Label>
-                    <Input type="text" value="Team Manager" />
+                  <div className="col-span-2 lg:col-span-1">
+                    <Label>Role</Label>
+                    <Input type="text" value={admin?.role || ""} />
                   </div>
                 </div>
               </div>

@@ -2,6 +2,7 @@ export interface AdminUser {
   id: number;
   name: string;
   email: string;
+  mobile: string;
   role: string;
 }
 
@@ -67,4 +68,30 @@ export async function logoutAdmin(accessToken: string): Promise<void> {
   if (!response.ok) {
     throw new Error("Unable to sign out from the server.");
   }
+}
+
+export async function getAdminProfile(
+  accessToken: string,
+): Promise<AdminUser> {
+  const response = await fetch(`${API_BASE_URL}/api/admin/auth/me`, {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+
+  const data = (await response.json().catch(() => null)) as
+    | { admin?: AdminUser; message?: string }
+    | null;
+
+  if (!response.ok) {
+    throw new Error(
+      data?.message || "Unable to load the admin profile.",
+    );
+  }
+
+  if (!data?.admin) {
+    throw new Error("The server returned an invalid admin profile.");
+  }
+
+  return data.admin;
 }

@@ -28,7 +28,7 @@ module.exports = async function requireAdmin(req, res, next) {
     if (!adminId || !sessionId || !st) throw httpError(401, 'Invalid token payload');
 
     const admins = await query(
-      `SELECT id, full_name, email, role, status
+      `SELECT id, full_name, email, mobile, role, status
        FROM admins
        WHERE id = ?
        LIMIT 1`,
@@ -64,6 +64,7 @@ module.exports = async function requireAdmin(req, res, next) {
       id: admin.id,
       name: admin.full_name,
       email: admin.email,
+      mobile: admin.mobile,
       role: admin.role,
     };
 
